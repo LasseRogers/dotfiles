@@ -157,7 +157,15 @@ rust_toolchain() {
       return 0
     fi
   fi
-  "$HOME/.cargo/bin/rustup" component add rust-src >/dev/null || warn "couldn't add rust-src"
+
+  # An existing rustup (older install, minimal profile, apt) can lack these; the files in
+  # ~/.cargo/bin are proxies that exist either way, so install the components explicitly.
+  local rustup
+  rustup="$(command -v rustup || echo "$HOME/.cargo/bin/rustup")"
+  "$rustup" default >/dev/null 2>&1 || "$rustup" default stable >/dev/null ||
+    { warn "couldn't set a default Rust toolchain"; return 0; }
+  "$rustup" component add rust-src rustfmt clippy >/dev/null ||
+    warn "couldn't add rust-src/rustfmt/clippy"
 }
 
 tmux_plugins() {
