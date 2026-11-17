@@ -82,7 +82,7 @@ tmux prefix is `<C-s>`. `|` and `-` split, `r` reloads, `I` installs plugins.
 | Compose | docker_compose_language_service, yamlls | | LSP |
 | YAML / JSON | yamlls / jsonls | | LSP |
 | SQL | | | sql-formatter (postgresql) |
-| JavaScript / TypeScript | ts_ls | eslint | prettier |
+| JavaScript / TypeScript | tsc (TypeScript 7) | eslint | prettier |
 | Rust | rust_analyzer | clippy | rustfmt |
 | Lua | lua_ls | | stylua |
 

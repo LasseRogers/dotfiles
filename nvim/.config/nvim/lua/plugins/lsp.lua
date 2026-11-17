@@ -46,10 +46,12 @@ return {
           "docker_compose_language_service",
           "yamlls",
           "jsonls",
-          "ts_ls",
+          "tsc", -- TypeScript 7 native language server (replaces ts_ls)
           "eslint",
           "rust_analyzer",
         },
+        -- Still installed from before the switch to tsc; would duplicate every diagnostic.
+        automatic_enable = { exclude = { "ts_ls" } },
       })
 
       local map = vim.keymap.set
