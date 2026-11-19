@@ -58,6 +58,7 @@ Leader is `<Space>`.
 | `<leader>d` | line diagnostics |
 | `<leader>x` | close buffer, keep the window (hides a terminal instead) |
 | `<leader>t` | terminal: open/focus, hide when focused; restarts if the shell exited |
+| `<leader>R` | save and run current file with bash |
 | `<leader>gp` `<leader>gt` | preview hunk, toggle blame |
 | `<leader>gv` | toggle side-by-side diff against HEAD |
 | `<leader>lg` | lazygit |
