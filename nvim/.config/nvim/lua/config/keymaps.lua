@@ -35,3 +35,9 @@ map("t", "<C-h>", [[<C-\><C-n><C-w>h]])
 map("t", "<C-j>", [[<C-\><C-n><C-w>j]])
 map("t", "<C-k>", [[<C-\><C-n><C-w>k]])
 map("t", "<C-l>", [[<C-\><C-n><C-w>l]])
+
+-- Save and run the current file as a bash script in a Snacks terminal.
+map("n", "<leader>R", function()
+  vim.cmd.write()
+  Snacks.terminal("bash " .. vim.fn.shellescape(vim.fn.expand("%:p")), { interactive = false })
+end, { desc = "Run file with bash" })
