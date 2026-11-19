@@ -1,4 +1,4 @@
-# nvim-config
+# dotfiles
 
 My Neovim setup, plus the tmux, Ghostty and bash bits that go with it.
 Runs on Debian/Ubuntu and Apple Silicon macOS.
@@ -6,8 +6,8 @@ Runs on Debian/Ubuntu and Apple Silicon macOS.
 ## Install
 
 ```sh
-git clone git@github.com:LasseRogers/nvim-config.git ~/nvim-config
-~/nvim-config/install.sh
+git clone git@github.com:LasseRogers/dotfiles.git ~/dotfiles
+~/dotfiles/install.sh
 ```
 
 The script is idempotent. Existing configs are moved to `*.bak-<timestamp>` before linking.
