@@ -6,15 +6,15 @@ Runs on Debian/Ubuntu and Apple Silicon macOS.
 ## Install
 
 ```sh
-git clone git@github.com:LasseRogers/dotfiles.git ~/dotfiles
 ~/dotfiles/install.sh
 ```
 
 The script is idempotent. Existing configs are moved to `*.bak-<timestamp>` before linking.
 
 - **macOS**: Homebrew + `Brewfile`, and switches the login shell to Homebrew's bash.
-- **Debian-based**: apt packages, plus the latest Neovim, tree-sitter CLI, lazygit and the
-  JetBrainsMono Nerd Font installed under `~/.local`. Set the terminal font to
+- **Debian-based**: apt packages, plus the latest Neovim, tree-sitter CLI, Node.js LTS,
+  lazygit and the JetBrainsMono Nerd Font installed under `~/.local`. Re-runs only download
+  Neovim, tree-sitter and Node.js when a newer release is out. Set the terminal font to
   *JetBrainsMono Nerd Font Mono* afterwards.
 
 Both also get the Rust toolchain through rustup (`~/.cargo`) and uv for Python.
@@ -39,6 +39,18 @@ nvim/.config/nvim/
     ├── config/    options, keymaps, autocmds, lazy bootstrap
     └── plugins/   one spec per file
 ```
+
+The installer is split into parts that `install.sh` sources:
+
+```
+install/lib.sh      logging, latest release lookup
+install/macos.sh    Homebrew, login shell
+install/debian.sh   apt, Neovim, tree-sitter, Node.js, lazygit, font
+install/link.sh     backs up what's in the way, then stows
+install/tools.sh    Rust, uv, tmux and Neovim plugins
+```
+
+`tests/link.sh` runs the linking step against a throwaway `$HOME`.
 
 ## Keys
 
@@ -68,8 +80,6 @@ Leader is `<Space>`.
 | `<Esc><Esc>` | leave terminal mode; then `q` or `<leader>t` hides the terminal |
 
 Completion: `<Tab>` accepts, `<CR>` is always a newline.
-
-Closing the last buffer brings back the dashboard.
 
 tmux prefix is `<C-s>`. `|` and `-` split, `r` reloads, `I` installs plugins.
 
