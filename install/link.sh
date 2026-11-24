@@ -4,12 +4,18 @@
 link() {
   log "Linking configs"
   local packages=(nvim tmux bash)
-  [ "$OS" = Darwin ] && packages+=(ghostty)
+  # Paths the packages own in $HOME; only these are cleared before stowing.
+  local files=(.config/nvim .tmux.conf .config/bash/rc.sh)
+  if [ "$OS" = Darwin ]; then
+    packages+=(ghostty)
+    files+=(.config/ghostty/config)
+    mkdir -p "$HOME/.config/ghostty"
+  fi
 
   # Anything in the way that isn't already ours gets moved aside; dangling links are removed.
   local stamp f target
   stamp="$(date +%Y%m%d-%H%M%S)"
-  for f in .config/nvim .tmux.conf .config/bash/rc.sh .config/ghostty/config; do
+  for f in "${files[@]}"; do
     target="$HOME/$f"
     if [ -L "$target" ] && [[ "$(readlink -f "$target" 2>/dev/null)" == "$REPO"/* ]]; then
       continue
@@ -21,7 +27,7 @@ link() {
     fi
   done
 
-  mkdir -p "$HOME/.config/bash" "$HOME/.config/ghostty"
+  mkdir -p "$HOME/.config/bash"
   stow -d "$REPO" -t "$HOME" --restow "${packages[@]}"
 
   touch "$HOME/.bashrc"
