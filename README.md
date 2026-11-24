@@ -14,7 +14,7 @@ The script is idempotent. Existing configs are moved to `*.bak-<timestamp>` befo
 - **macOS**: Homebrew + `Brewfile`, and switches the login shell to Homebrew's bash.
 - **Debian-based**: apt packages, plus the latest Neovim, tree-sitter CLI, Node.js LTS,
   lazygit and the JetBrainsMono Nerd Font installed under `~/.local`. Re-runs only download
-  Neovim, tree-sitter and Node.js when a newer release is out. Set the terminal font to
+  Neovim, tree-sitter, Node.js and lazygit when a newer release is out. Set the terminal font to
   *JetBrainsMono Nerd Font Mono* afterwards.
 
 Both also get the Rust toolchain through rustup (`~/.cargo`) and uv for Python.

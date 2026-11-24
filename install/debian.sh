@@ -29,15 +29,7 @@ install_debian() {
 
   install_node "$node_arch"
 
-  if ! command -v lazygit >/dev/null 2>&1; then
-    log "lazygit"
-    local tag
-    tag="$(latest_tag jesseduffield/lazygit)"
-    if [ -z "$tag" ] || ! curl -fsSL "https://github.com/jesseduffield/lazygit/releases/download/$tag/lazygit_${tag#v}_Linux_$lg_arch.tar.gz" |
-      tar xz -C "$HOME/.local/bin" lazygit; then
-      warn "lazygit download failed, skipping"
-    fi
-  fi
+  install_lazygit "$lg_arch"
 
   # Not grep -q: it exits on the first match, fc-list gets SIGPIPE, and pipefail fails the check.
   if ! fc-list : family | grep -i "JetBrainsMono Nerd Font Mono" >/dev/null; then
@@ -98,4 +90,20 @@ install_tree_sitter() {
       gunzip >"$bin"
     chmod +x "$bin"
   fi
+}
+
+# Asset names carry the version, so without a tag there is nothing to download.
+install_lazygit() {
+  local arch="$1" bin="$HOME/.local/bin/lazygit" tag
+  tag="$(latest_tag jesseduffield/lazygit)"
+  if [ -z "$tag" ]; then
+    warn "couldn't look up the latest lazygit release, skipping"
+    return 0
+  fi
+  # `lazygit --version` is "commit=..., version=0.56.0, ..., git version=..."
+  [ "$("$bin" --version 2>/dev/null | sed -n 's/.*, version=\([^,]*\),.*/v\1/p')" = "$tag" ] && return 0
+  log "lazygit $tag"
+  curl -fsSL "https://github.com/jesseduffield/lazygit/releases/download/$tag/lazygit_${tag#v}_Linux_$arch.tar.gz" |
+    tar xz -C "$HOME/.local/bin" lazygit ||
+    warn "lazygit download failed, skipping"
 }
