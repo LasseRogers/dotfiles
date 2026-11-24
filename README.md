@@ -104,3 +104,5 @@ tmux prefix is `<C-s>`. `|` and `-` split, `r` reloads, `I` installs plugins.
   through `allow-passthrough`.
 - CSV/TSV open in csvview with a sticky header; the buffer itself is untouched.
 - Markdown is rendered in-buffer by render-markdown.nvim.
+- CUDA files get clangd and clang-format, but compiling them and full completion need
+  NVIDIA's CUDA toolkit, which the installer leaves to each machine.
