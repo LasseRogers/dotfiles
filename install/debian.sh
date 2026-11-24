@@ -24,18 +24,8 @@ install_debian() {
     *) die "unsupported architecture: $ARCH" ;;
   esac
 
-  # apt's neovim is too old for this config.
-  log "Neovim (latest release)"
-  rm -rf "$HOME/.local/opt/nvim"
-  mkdir -p "$HOME/.local/opt/nvim"
-  curl -fsSL "https://github.com/neovim/neovim/releases/latest/download/nvim-linux-$nvim_arch.tar.gz" |
-    tar xz -C "$HOME/.local/opt/nvim" --strip-components=1
-  ln -sf "$HOME/.local/opt/nvim/bin/nvim" "$HOME/.local/bin/nvim"
-
-  log "tree-sitter CLI"
-  curl -fsSL "https://github.com/tree-sitter/tree-sitter/releases/latest/download/tree-sitter-linux-$ts_arch.gz" |
-    gunzip >"$HOME/.local/bin/tree-sitter"
-  chmod +x "$HOME/.local/bin/tree-sitter"
+  install_nvim "$nvim_arch"
+  install_tree_sitter "$ts_arch"
 
   install_node "$node_arch"
 
@@ -77,4 +67,35 @@ install_node() {
       tar xz -C "$dir" --strip-components=1
   fi
   ln -sf "$dir/bin/node" "$dir/bin/npm" "$dir/bin/npx" "$HOME/.local/bin/"
+}
+
+# `<bin> --version` as a release tag: "NVIM v0.11.5" and "tree-sitter 0.25.10 (...)" give v<x.y.z>.
+installed_version() {
+  "$1" --version 2>/dev/null | awk 'NR == 1 { v = $2; sub(/^v?/, "v", v); print v }'
+}
+
+# apt's neovim is too old for this config. Downloads only when the release tag changed;
+# if the tag can't be looked up, falls back to always downloading.
+install_nvim() {
+  local arch="$1" dir="$HOME/.local/opt/nvim" tag
+  tag="$(latest_tag neovim/neovim)"
+  if [ -z "$tag" ] || [ "$(installed_version "$dir/bin/nvim")" != "$tag" ]; then
+    log "Neovim ${tag:-(latest release)}"
+    rm -rf "$dir"
+    mkdir -p "$dir"
+    curl -fsSL "https://github.com/neovim/neovim/releases/latest/download/nvim-linux-$arch.tar.gz" |
+      tar xz -C "$dir" --strip-components=1
+  fi
+  ln -sf "$dir/bin/nvim" "$HOME/.local/bin/nvim"
+}
+
+install_tree_sitter() {
+  local arch="$1" bin="$HOME/.local/bin/tree-sitter" tag
+  tag="$(latest_tag tree-sitter/tree-sitter)"
+  if [ -z "$tag" ] || [ "$(installed_version "$bin")" != "$tag" ]; then
+    log "tree-sitter CLI ${tag:-(latest release)}"
+    curl -fsSL "https://github.com/tree-sitter/tree-sitter/releases/latest/download/tree-sitter-linux-$arch.gz" |
+      gunzip >"$bin"
+    chmod +x "$bin"
+  fi
 }
