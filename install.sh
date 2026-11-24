@@ -168,6 +168,17 @@ rust_toolchain() {
     warn "couldn't add rust-src/rustfmt/clippy"
 }
 
+# Installs to ~/.local/bin, already on PATH via rc.sh, so the installer must not edit shell files.
+uv_install() {
+  command -v uv >/dev/null 2>&1 && return 0
+  log "uv"
+  local script
+  if ! script="$(curl -LsSf https://astral.sh/uv/install.sh)" ||
+    ! UV_NO_MODIFY_PATH=1 sh -c "$script"; then
+    warn "uv install failed, skipping"
+  fi
+}
+
 tmux_plugins() {
   if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
     git clone -q --depth 1 https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
@@ -189,6 +200,7 @@ esac
 
 link
 rust_toolchain
+uv_install
 tmux_plugins
 nvim_plugins
 

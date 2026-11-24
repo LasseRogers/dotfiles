@@ -17,7 +17,7 @@ The script is idempotent. Existing configs are moved to `*.bak-<timestamp>` befo
   JetBrainsMono Nerd Font installed under `~/.local`. Set the terminal font to
   *JetBrainsMono Nerd Font Mono* afterwards.
 
-Both also get the Rust toolchain through rustup (`~/.cargo`).
+Both also get the Rust toolchain through rustup (`~/.cargo`) and uv for Python.
 
 LSP servers, formatters and tree-sitter parsers install on first launch (`:Mason` to check).
 

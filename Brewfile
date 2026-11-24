@@ -5,6 +5,7 @@ brew "ripgrep"
 brew "fd"
 brew "lazygit"
 brew "imagemagick"
+brew "uv"
 
 brew "tmux"
 brew "gawk"
