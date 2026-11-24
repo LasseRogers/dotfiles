@@ -6,6 +6,7 @@ brew "fd"
 brew "lazygit"
 brew "imagemagick"
 brew "uv"
+brew "cmake"
 
 brew "tmux"
 brew "gawk"

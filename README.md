@@ -85,6 +85,7 @@ tmux prefix is `<C-s>`. `|` and `-` split, `r` reloads, `I` installs plugins.
 | SQL | | | sql-formatter (postgresql) |
 | JavaScript / TypeScript | tsc (TypeScript 7) | eslint | prettier |
 | Rust | rust_analyzer | clippy | rustfmt |
+| C / C++ / CUDA | clangd | | clang-format |
 | Lua | lua_ls | | stylua |
 
 ## Notes

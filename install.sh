@@ -66,7 +66,7 @@ install_debian() {
   log "apt packages"
   $sudo apt-get update
   $sudo apt-get install -y \
-    git curl unzip build-essential \
+    git curl unzip build-essential cmake \
     ripgrep fd-find fzf \
     nodejs npm python3-venv \
     xclip wl-clipboard \

@@ -14,6 +14,7 @@ return {
         "hadolint",
         "sql-formatter",
         "prettier",
+        "clang-format",
       },
     },
   },
@@ -49,6 +50,7 @@ return {
           "tsc", -- TypeScript 7 native language server (replaces ts_ls)
           "eslint",
           "rust_analyzer",
+          "clangd",
         },
         -- Still installed from before the switch to tsc; would duplicate every diagnostic.
         automatic_enable = { exclude = { "ts_ls" } },

@@ -14,6 +14,9 @@ return {
         typescript = { "prettier" },
         typescriptreact = { "prettier" },
         rust = { "rustfmt" },
+        c = { "clang_format" },
+        cpp = { "clang_format" },
+        cuda = { "clang_format" },
       },
       formatters = {
         sql_formatter = { prepend_args = { "--language", "postgresql" } },

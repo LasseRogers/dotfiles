@@ -4,6 +4,7 @@ local parsers = {
   "lua", "vim", "vimdoc", "query",
   "python", "bash", "sql",
   "javascript", "typescript", "tsx", "jsdoc", "rust",
+  "c", "cpp", "cuda", "cmake",
   "json", "yaml", "toml", "markdown", "markdown_inline", "html",
   "dockerfile", "gitignore", "regex",
 }
