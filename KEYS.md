@@ -30,6 +30,8 @@ Completion (insert mode): `<Tab>` accepts the suggestion, `<CR>` always inserts 
 
 | Key | |
 |---|---|
+| `<leader>w` | save the buffer |
+| `<leader>q` | close the window; quits nvim if it's the last one |
 | `<leader>x` | close the buffer but keep the window; hides a terminal instead of killing it |
 | `<C-h/j/k/l>` | move to the split or tmux pane left/down/up/right; also works from terminal mode |
 
