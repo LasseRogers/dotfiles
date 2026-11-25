@@ -56,15 +56,15 @@ install/tools.sh    Rust, uv, tmux and Neovim plugins
 
 | | LSP | Lint | Format |
 |---|---|---|---|
-| Python | pyright | ruff | ruff |
-| Bash | bashls | shellcheck | shfmt |
-| Docker | dockerls, docker_compose_language_service, yamlls | hadolint | LSP |
-| YAML / JSON | yamlls / jsonls | | LSP |
-| SQL | | | sql-formatter (postgresql) |
-| JavaScript / TypeScript | tsc (TypeScript 7) | eslint | prettier |
-| Rust | rust_analyzer | clippy | rustfmt |
-| C / C++ / CUDA | clangd | | clang-format |
-| Lua | lua_ls | | stylua |
+| ![Python](https://img.shields.io/badge/Python-1E1E1E?logo=python&logoColor=3776AB) | pyright | ruff | ruff |
+| ![Bash](https://img.shields.io/badge/Bash-1E1E1E?logo=gnubash&logoColor=4EAA25) | bashls | shellcheck | shfmt |
+| ![Docker](https://img.shields.io/badge/Docker-1E1E1E?logo=docker&logoColor=2496ED) | dockerls, docker_compose_language_service, yamlls | hadolint | LSP |
+| ![YAML](https://img.shields.io/badge/YAML-1E1E1E?logo=yaml&logoColor=CB171E) ![JSON](https://img.shields.io/badge/JSON-1E1E1E?logo=json&logoColor=FFFFFF) | yamlls / jsonls |  | LSP |
+| ![SQL](https://img.shields.io/badge/SQL-1E1E1E?logo=postgresql&logoColor=4169E1) |  |  | sql-formatter (postgresql) |
+| ![JavaScript](https://img.shields.io/badge/JavaScript-1E1E1E?logo=javascript&logoColor=F7DF1E) ![TypeScript](https://img.shields.io/badge/TypeScript-1E1E1E?logo=typescript&logoColor=3178C6) | tsc (TypeScript 7) | eslint | prettier |
+| ![Rust](https://img.shields.io/badge/Rust-1E1E1E?logo=rust&logoColor=DEA584) | rust_analyzer | clippy | rustfmt |
+| ![C](https://img.shields.io/badge/C-1E1E1E?logo=c&logoColor=659AD2) ![C++](https://img.shields.io/badge/C%2B%2B-1E1E1E?logo=cplusplus&logoColor=659AD2) ![CUDA](https://img.shields.io/badge/CUDA-1E1E1E?logo=nvidia&logoColor=76B900) | clangd |  | clang-format |
+| ![Lua](https://img.shields.io/badge/Lua-1E1E1E?logo=lua&logoColor=5C5DC2) | lua_ls |  | stylua |
 
 ## Notes
 
