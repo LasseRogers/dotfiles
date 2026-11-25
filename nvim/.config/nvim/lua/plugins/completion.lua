@@ -51,6 +51,9 @@ return {
           { name = "buffer" },
         }),
       })
+
+      -- Accepting a function or method also inserts its ().
+      cmp.event:on("confirm_done", require("nvim-autopairs.completion.cmp").on_confirm_done())
     end,
   },
 }
