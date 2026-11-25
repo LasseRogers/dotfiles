@@ -41,7 +41,7 @@ Completion (insert mode): `<Tab>` accepts the suggestion, `<CR>` always inserts 
 |---|---|
 | `<leader>t` | toggle the terminal: open and focus it, hide it when focused; restarts it if the shell exited |
 | `<Esc><Esc>` | leave terminal mode; then `q` or `<leader>t` hides the terminal |
-| `<leader>R` | save and run the current file with bash |
+| `<leader>R` | save and run the current file: `bash`, `uv run`, `nvim -l` or `node` by filetype |
 
 ## Git
 

@@ -36,8 +36,21 @@ map("t", "<C-j>", [[<C-\><C-n><C-w>j]])
 map("t", "<C-k>", [[<C-\><C-n><C-w>k]])
 map("t", "<C-l>", [[<C-\><C-n><C-w>l]])
 
--- Save and run the current file as a bash script in a Snacks terminal.
+-- Save and run the current file in a Snacks terminal, picking the runner by filetype.
+local runners = {
+  sh = "bash",
+  bash = "bash",
+  python = "uv run", -- honours inline script dependencies (PEP 723)
+  lua = "nvim -l",
+  javascript = "node",
+  typescript = "node", -- Node strips types natively
+}
 map("n", "<leader>R", function()
+  local runner = runners[vim.bo.filetype]
+  if not runner then
+    vim.notify("No runner for filetype '" .. vim.bo.filetype .. "'", vim.log.levels.WARN)
+    return
+  end
   vim.cmd.write()
-  Snacks.terminal("bash " .. vim.fn.shellescape(vim.fn.expand("%:p")), { interactive = false })
-end, { desc = "Run file with bash" })
+  Snacks.terminal(runner .. " " .. vim.fn.shellescape(vim.fn.expand("%:p")), { interactive = false })
+end, { desc = "Run file" })
