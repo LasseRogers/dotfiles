@@ -30,3 +30,10 @@ HISTCONTROL=ignoreboth:erasedups
 shopt -s histappend
 # Write each command as it runs, so closing one of several panes doesn't drop the others'.
 [[ "$PROMPT_COMMAND" == *"history -a"* ]] || PROMPT_COMMAND="history -a${PROMPT_COMMAND:+; $PROMPT_COMMAND}"
+
+# Prompt: folder, then the git branch (or short commit when detached).
+__git_branch() {
+  local b
+  b="$(git symbolic-ref --short HEAD 2>/dev/null || git rev-parse --short HEAD 2>/dev/null)" && printf ' (%s)' "$b"
+}
+PS1='\[\e[1;34m\]\w\[\e[0;35m\]$(__git_branch)\[\e[0m\] \$ '
