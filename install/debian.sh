@@ -7,6 +7,8 @@ install_debian() {
   local sudo=""
   [ "$(id -u)" -eq 0 ] || sudo="sudo"
 
+  # No imagemagick, unlike the Brewfile: snacks.nvim only shows images in Ghostty or kitty,
+  # and these machines use GNOME Terminal.
   log "apt packages"
   $sudo apt-get update
   $sudo apt-get install -y \
