@@ -75,3 +75,5 @@ install/tools.sh    Rust, uv, tmux and Neovim plugins
 - Markdown is rendered in-buffer by render-markdown.nvim.
 - CUDA files get clangd and clang-format, but compiling them and full completion need
   NVIDIA's CUDA toolkit, which the installer leaves to each machine.
+- Mason has no clangd build for ARM Linux, so C/C++/CUDA support is missing there. Only
+  x86 Linux and macOS are in daily use.
