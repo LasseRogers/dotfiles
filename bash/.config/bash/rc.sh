@@ -22,3 +22,11 @@ if command -v fzf >/dev/null 2>&1; then
     . /usr/share/doc/fzf/examples/key-bindings.bash
   fi
 fi
+
+# Large shared history. Runs after Debian's default .bashrc, so these sizes win.
+HISTSIZE=100000
+HISTFILESIZE=100000
+HISTCONTROL=ignoreboth:erasedups
+shopt -s histappend
+# Write each command as it runs, so closing one of several panes doesn't drop the others'.
+[[ "$PROMPT_COMMAND" == *"history -a"* ]] || PROMPT_COMMAND="history -a${PROMPT_COMMAND:+; $PROMPT_COMMAND}"
