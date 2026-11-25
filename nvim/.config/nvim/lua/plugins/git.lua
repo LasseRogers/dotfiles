@@ -14,7 +14,7 @@ return {
             return
           end
         end
-        require("gitsigns").diffthis()
+        require("gitsigns").diffthis("HEAD")
       end, { desc = "Toggle diff against HEAD" })
     end,
   },
