@@ -18,6 +18,7 @@ install_debian() {
     stow fontconfig
 
   local nvim_arch ts_arch lg_arch node_arch
+  # shellcheck disable=SC2153 # ARCH is set by install.sh
   case "$ARCH" in
     x86_64) nvim_arch=x86_64 ts_arch=x64 lg_arch=x86_64 node_arch=x64 ;;
     aarch64 | arm64) nvim_arch=arm64 ts_arch=arm64 lg_arch=arm64 node_arch=arm64 ;;
