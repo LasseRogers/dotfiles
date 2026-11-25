@@ -37,3 +37,9 @@ __git_branch() {
   b="$(git symbolic-ref --short HEAD 2>/dev/null || git rev-parse --short HEAD 2>/dev/null)" && printf ' (%s)' "$b"
 }
 PS1='\[\e[1;34m\]\w\[\e[0;35m\]$(__git_branch)\[\e[0m\] \$ '
+
+# Debian's default .bashrc already loads completion; Homebrew's bash doesn't.
+if [ -n "${HOMEBREW_PREFIX:-}" ] && [ -r "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh" ]; then
+  # shellcheck source=/dev/null
+  . "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh"
+fi

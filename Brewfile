@@ -12,6 +12,7 @@ brew "tmux"
 brew "gawk"
 
 brew "bash"
+brew "bash-completion@2"
 brew "fzf"
 brew "git"
 brew "stow"
