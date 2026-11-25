@@ -1,3 +1,5 @@
+-- Mason tools are unpinned on purpose: every machine gets the latest release.
+-- lazy-lock.json pins only the plugins.
 return {
   {
     "mason-org/mason.nvim",
