@@ -59,6 +59,24 @@ Completion (insert mode): `<Tab>` accepts the suggestion, `<CR>` always inserts 
 | `<leader>mr` | toggle in-buffer markdown rendering |
 | `<leader>cv` | toggle the aligned CSV/TSV view |
 
+## Editing basics
+
+Vim built-ins. Line numbers are relative: the number next to a line is how far away it is.
+
+| Key | |
+|---|---|
+| `v` / `V` | select characters / whole lines |
+| `ggVG` | select the whole file |
+| `y` / `d` / `p` | copy / delete / paste; shares the system clipboard |
+| `>` / `<` | indent / unindent the selection |
+| `gg` / `G` | jump to the start / end of the file |
+| `42G` | jump to line 42 |
+| `5j` / `5k` | move 5 lines down / up |
+| `3dd` / `5yy` | delete 3 lines / copy 5 lines |
+| `u` / `<C-r>` | undo / redo |
+| `/text` | search the file; `n` / `N` for the next / previous match |
+| `gc` / `gcc` | toggle comment on the selection / the current line |
+
 ## tmux
 
 Prefix is `<C-s>`. After the prefix: `|` splits side by side, `-` splits top/bottom,
