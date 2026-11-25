@@ -18,7 +18,10 @@ rust_toolchain() {
   local rustup
   rustup="$(command -v rustup || echo "$HOME/.cargo/bin/rustup")"
   "$rustup" default >/dev/null 2>&1 || "$rustup" default stable >/dev/null ||
-    { warn "couldn't set a default Rust toolchain"; return 0; }
+    {
+      warn "couldn't set a default Rust toolchain"
+      return 0
+    }
   "$rustup" component add rust-src rustfmt clippy >/dev/null ||
     warn "couldn't add rust-src/rustfmt/clippy"
 }

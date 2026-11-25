@@ -12,7 +12,10 @@ REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 HOME="$(mktemp -d)"
 trap 'rm -rf "$HOME"' EXIT
-fail() { printf 'FAIL: %s\n' "$*" >&2; exit 1; }
+fail() {
+  printf 'FAIL: %s\n' "$*" >&2
+  exit 1
+}
 backups() { compgen -G "$HOME/$1.bak-*" >/dev/null; }
 
 # Ghostty isn't stowed on Linux, so a config of the user's own must stay put.
