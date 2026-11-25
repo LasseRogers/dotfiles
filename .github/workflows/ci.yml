@@ -9,9 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      # shellcheck is preinstalled on the runner; stow is not.
-      - run: sudo apt-get install -y stow
+      # shellcheck is preinstalled on the runner; stow and shfmt are not.
+      - run: sudo apt-get install -y stow shfmt
       - run: shellcheck -x install.sh install/*.sh tests/*.sh bash/.config/bash/rc.sh
+      - run: shfmt -d install.sh install/*.sh tests/*.sh bash/.config/bash/rc.sh
       - run: tests/link.sh
 
   lua:
