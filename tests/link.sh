@@ -32,6 +32,9 @@ backups .config/nvim || fail "nvim dir not backed up"
 [ -L "$HOME/.config/bash/rc.sh" ] || fail "rc.sh not linked"
 backups .config/bash/rc.sh || fail "rc.sh not backed up"
 
+[ ! -L "$HOME/.config/git" ] || fail "git dir linked instead of kept real"
+[ -L "$HOME/.config/git/config" ] || fail "git config not linked"
+
 # A second run finds everything ours and backs up nothing.
 out="$(OS=Linux link)"
 [[ "$out" != *backup:* ]] || fail "second run made backups"

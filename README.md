@@ -28,6 +28,7 @@ Stow packages, each mirroring `$HOME`:
 ```
 nvim/      ~/.config/nvim
 tmux/      ~/.tmux.conf
+git/       ~/.config/git          (identity in ~/.config/git/local)
 bash/      ~/.config/bash/rc.sh   (sourced from ~/.bashrc)
 ghostty/   ~/.config/ghostty      (macOS only)
 ```

@@ -1,0 +1,27 @@
+[init]
+	defaultBranch = main
+[pull]
+	rebase = true
+[rebase]
+	# Stash uncommitted changes around a pull instead of refusing to run.
+	autoStash = true
+[push]
+	autoSetupRemote = true
+[fetch]
+	prune = true
+[diff]
+	algorithm = histogram
+[merge]
+	# Also show the common ancestor in conflict markers.
+	conflictStyle = zdiff3
+[rerere]
+	# Reuse recorded conflict resolutions, e.g. across repeated rebases.
+	enabled = true
+[branch]
+	sort = -committerdate
+[commit]
+	verbose = true
+
+# Identity and machine-specific overrides; last so they win.
+[include]
+	path = ~/.config/git/local

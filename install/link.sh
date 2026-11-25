@@ -21,10 +21,10 @@ owned() {
 
 link() {
   log "Linking configs"
-  local packages=(nvim tmux bash)
+  local packages=(nvim tmux bash git)
   [ "$OS" = Darwin ] && packages+=(ghostty)
   # Kept as real dirs so other files can live beside ours; anything else is linked whole.
-  local shared=(.config .config/bash .config/ghostty)
+  local shared=(.config .config/bash .config/ghostty .config/git)
 
   # Anything in the way that isn't already ours gets moved aside; dangling links are removed.
   local stamp pkg d f target
