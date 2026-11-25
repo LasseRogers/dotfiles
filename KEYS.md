@@ -70,6 +70,7 @@ Vim built-ins. Line numbers are relative: the number next to a line is how far a
 | `y` / `d` / `p` | copy / delete / paste; shares the system clipboard |
 | `>` / `<` | indent / unindent the selection |
 | `gg` / `G` | jump to the start / end of the file |
+| `{` / `}` | jump to the previous / next blank line, i.e. code block |
 | `42G` | jump to line 42 |
 | `5j` / `5k` | move 5 lines down / up |
 | `3dd` / `5yy` | delete 3 lines / copy 5 lines |
