@@ -52,14 +52,13 @@ install/tools.sh    Rust, uv, tmux and Neovim plugins
 
 `tests/link.sh` runs the linking step against a throwaway `$HOME`.
 
-## Languages
+## Tooling
 
 | | LSP | Lint | Format |
 |---|---|---|---|
-| Python | pyright, ruff | ruff | ruff |
+| Python | pyright | ruff | ruff |
 | Bash | bashls | shellcheck | shfmt |
-| Dockerfile | dockerls | hadolint | LSP |
-| Compose | docker_compose_language_service, yamlls | | LSP |
+| Docker | dockerls, docker_compose_language_service, yamlls | hadolint | LSP |
 | YAML / JSON | yamlls / jsonls | | LSP |
 | SQL | | | sql-formatter (postgresql) |
 | JavaScript / TypeScript | tsc (TypeScript 7) | eslint | prettier |
