@@ -52,5 +52,10 @@ map("n", "<leader>R", function()
     return
   end
   vim.cmd.write()
-  Snacks.terminal(runner .. " " .. vim.fn.shellescape(vim.fn.expand("%:p")), { interactive = false })
+  local cmd = runner .. " " .. vim.fn.shellescape(vim.fn.expand("%:p"))
+  local opts = { interactive = false }
+  -- Snacks keys terminals by command and would re-show the last run; wipe it to run fresh.
+  local last = Snacks.terminal.get(cmd, vim.tbl_extend("force", opts, { create = false }))
+  if last then vim.api.nvim_buf_delete(last.buf, { force = true }) end
+  Snacks.terminal(cmd, opts)
 end, { desc = "Run file" })
