@@ -38,6 +38,8 @@ backups .config/bash/rc.sh || fail "rc.sh not backed up"
 [ ! -L "$HOME/.config/git" ] || fail "git dir linked instead of kept real"
 [ -L "$HOME/.config/git/config" ] || fail "git config not linked"
 
+[ -L "$HOME/.inputrc" ] || fail "inputrc not linked"
+
 # A second run finds everything ours and backs up nothing.
 out="$(OS=Linux link)"
 [[ "$out" != *backup:* ]] || fail "second run made backups"

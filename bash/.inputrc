@@ -1,0 +1,11 @@
+# Keep the system defaults, then add to them.
+$include /etc/inputrc
+
+set completion-ignore-case on
+set show-all-if-ambiguous on
+
+# Up/Down search history for what's already typed. Both forms: terminals send either.
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+"\eOA": history-search-backward
+"\eOB": history-search-forward

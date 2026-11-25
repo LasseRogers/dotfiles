@@ -30,6 +30,7 @@ nvim/      ~/.config/nvim
 tmux/      ~/.tmux.conf
 git/       ~/.config/git          (identity in ~/.config/git/local)
 bash/      ~/.config/bash/rc.sh   (sourced from ~/.bashrc)
+           ~/.inputrc
 ghostty/   ~/.config/ghostty      (macOS only)
 ```
 
