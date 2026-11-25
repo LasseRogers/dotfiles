@@ -21,6 +21,13 @@ Both also get the Rust toolchain through rustup (`~/.cargo`) and uv for Python.
 
 LSP servers, formatters and tree-sitter parsers install on first launch (`:Mason` to check).
 
+Git identity is per machine and stays out of the repo. Set it once after installing:
+
+```sh
+git config --file ~/.config/git/local user.name "Name"
+git config --file ~/.config/git/local user.email name@example.com
+```
+
 ## Layout
 
 Stow packages, each mirroring `$HOME`:
