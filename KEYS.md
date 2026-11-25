@@ -6,7 +6,7 @@ Leader is `<Space>`. All mappings are normal mode unless noted.
 |---|---|
 | `<C-p>` | find a file by name |
 | `<leader>fg` | search file contents across the project (live grep) |
-| `<leader>fb` | switch between open buffers |
+| `<leader>fb` | switch between open buffers; `<M-d>` closes the selected one (`<Tab>` to mark several) |
 | `<leader>fr` | reopen a recent file |
 | `<C-n>` | toggle the file tree, revealing the current file |
 | `K` | show docs and type info for the symbol under the cursor |
