@@ -1,5 +1,5 @@
--- Mason tools are unpinned on purpose: every machine gets the latest release.
--- lazy-lock.json pins only the plugins.
+-- Mason tools track the latest release: missing ones are installed and the rest updated in
+-- the background, at most once a day. lazy-lock.json pins only the plugins.
 return {
   {
     "mason-org/mason.nvim",
@@ -7,9 +7,24 @@ return {
   },
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
-    dependencies = { "mason-org/mason.nvim" },
+    -- mason-lspconfig lets the list use lspconfig names for the servers.
+    dependencies = { "mason-org/mason.nvim", "mason-org/mason-lspconfig.nvim" },
     opts = {
       ensure_installed = {
+        -- Language servers
+        "lua_ls",
+        "pyright",
+        "ruff",
+        "bashls",
+        "dockerls",
+        "docker_compose_language_service",
+        "yamlls",
+        "jsonls",
+        "tsc", -- TypeScript 7 native language server (replaces ts_ls)
+        "eslint",
+        "rust_analyzer",
+        "clangd",
+        -- Formatters and linters
         "stylua",
         "shfmt",
         "shellcheck", -- picked up by bashls
@@ -18,6 +33,8 @@ return {
         "prettier",
         "clang-format",
       },
+      auto_update = true,
+      debounce_hours = 24,
     },
   },
   {
@@ -38,22 +55,8 @@ return {
         settings = { Lua = { diagnostics = { globals = { "vim" } } } },
       })
 
-      -- mason-lspconfig enables installed servers automatically.
+      -- Enables installed servers automatically; mason-tool-installer does the installing.
       require("mason-lspconfig").setup({
-        ensure_installed = {
-          "lua_ls",
-          "pyright",
-          "ruff",
-          "bashls",
-          "dockerls",
-          "docker_compose_language_service",
-          "yamlls",
-          "jsonls",
-          "tsc", -- TypeScript 7 native language server (replaces ts_ls)
-          "eslint",
-          "rust_analyzer",
-          "clangd",
-        },
         -- Still installed from before the switch to tsc; would duplicate every diagnostic.
         automatic_enable = { exclude = { "ts_ls" } },
       })
