@@ -47,5 +47,6 @@ tmux_plugins() {
 
 nvim_plugins() {
   log "Neovim plugins"
-  nvim --headless "+Lazy! sync" +qa
+  # Installs the versions in lazy-lock.json; updating is a deliberate :Lazy update.
+  nvim --headless "+Lazy! restore" +qa
 }
