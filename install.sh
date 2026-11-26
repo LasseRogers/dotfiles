@@ -37,5 +37,4 @@ nvim_plugins
 
 log "Done"
 echo "Open a new shell and run nvim. LSP servers and parsers install on first launch."
-[ "$OS" = Linux ] && echo "Set your terminal font to JetBrainsMono Nerd Font Mono."
 exit 0

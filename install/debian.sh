@@ -47,6 +47,8 @@ install_debian() {
     rm -rf "$tmp"
     fc-cache -f >/dev/null
   fi
+
+  gnome_terminal_font
 }
 
 # apt's nodejs is too old for Mason's npm-based servers on most releases.
@@ -109,4 +111,24 @@ install_lazygit() {
   curl -fsSL "https://github.com/jesseduffield/lazygit/releases/download/$tag/lazygit_${tag#v}_Linux_$arch.tar.gz" |
     tar xz -C "$HOME/.local/bin" lazygit ||
     warn "lazygit download failed, skipping"
+}
+
+# Points GNOME Terminal's default profile at the Nerd Font. Skipped when it already uses it,
+# so a size picked by hand survives re-runs, and without GNOME Terminal or a desktop session.
+gnome_terminal_font() {
+  command -v gsettings >/dev/null 2>&1 || return 0
+  # Not grep -q, for the same SIGPIPE reason as the fc-list check.
+  gsettings list-schemas 2>/dev/null | grep -x org.gnome.Terminal.ProfilesList >/dev/null || return 0
+  local profile path
+  profile="$(gsettings get org.gnome.Terminal.ProfilesList default | tr -d "'")"
+  path="org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$profile/"
+  if [ "$(gsettings get "$path" use-system-font)" = false ] &&
+    [[ "$(gsettings get "$path" font)" == *"JetBrainsMono Nerd Font Mono"* ]]; then
+    return 0
+  fi
+  log "GNOME Terminal font"
+  if ! gsettings set "$path" use-system-font false ||
+    ! gsettings set "$path" font 'JetBrainsMono Nerd Font Mono 12'; then
+    warn "couldn't set the GNOME Terminal font"
+  fi
 }

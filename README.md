@@ -14,8 +14,8 @@ The script is idempotent. Existing configs are moved to `*.bak-<timestamp>` befo
 - **macOS**: Homebrew + `Brewfile`, and switches the login shell to Homebrew's bash.
 - **Debian-based**: apt packages, plus the latest Neovim, tree-sitter CLI, Node.js LTS,
   lazygit and the JetBrainsMono Nerd Font installed under `~/.local`. Re-runs only download
-  Neovim, tree-sitter, Node.js and lazygit when a newer release is out. Set the terminal font to
-  *JetBrainsMono Nerd Font Mono* afterwards.
+  Neovim, tree-sitter, Node.js and lazygit when a newer release is out. GNOME Terminal is switched to
+  *JetBrainsMono Nerd Font Mono*; other terminals need it set by hand.
 
 Both also get the Rust toolchain through rustup (`~/.cargo`) and uv for Python.
 
@@ -54,7 +54,7 @@ The installer is split into parts that `install.sh` sources:
 ```
 install/lib.sh      logging, latest release lookup
 install/macos.sh    Homebrew, login shell
-install/debian.sh   apt, Neovim, tree-sitter, Node.js, lazygit, font
+install/debian.sh   apt, Neovim, tree-sitter, Node.js, lazygit, font + GNOME Terminal setting
 install/link.sh     backs up what's in the way, then stows
 install/tools.sh    Rust, uv, tmux and Neovim plugins
 ```
